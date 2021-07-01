@@ -1,0 +1,50 @@
+﻿@inherits UmbracoViewPage
+@{
+    var images = Model.Value<IEnumerable<Umbraco.Core.Models.MediaWithCrops>>("images");
+
+    List<string> imagesUrl = new List<string>();
+
+    if (Model.HasValue("images"))
+    {
+        foreach (var image in images)
+        {
+            imagesUrl.Add(image.MediaItem.Url);
+        }
+    }
+
+    bool isActive = true;
+    int i = 0;
+}
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<div class="lg">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            @foreach (var image in imagesUrl)
+            {
+                <li data-target="#carouselExampleIndicators" data-slide-to="@i" class="@((image == imagesUrl[0]) ? "active" : "")"></li>
+            }
+        </ol>
+
+        <div class="carousel-inner">
+            @foreach (var image in imagesUrl)
+            {
+
+                <div class="carousel-item @((isActive == true) ? "active" : "") ">
+                    <img class="d-block w-20" src="@image" alt="slide">
+                </div>
+                isActive = false;
+            }
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>

@@ -1,0 +1,31 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using ClientDependency.Core.Mvc;
+@{
+    Layout = "Master.cshtml";
+
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+
+    Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js");
+    //Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js");
+    Html.RequiresJs("/Scripts/jquery.validate.min.js");
+    Html.RequiresJs("/Scripts/jquery.validate.unobtrusive.min.js");
+    Html.RequiresJs("/Scripts/jquery.unobtrusive-ajax.min.js");
+    Html.RequiresJs("/Sscripts/contactForm.js");
+}
+
+<!-- Page Header-->
+@Html.Partial("~/Views/Partials/pageHeader.cshtml")
+<div class="container">
+    <div class="row">
+        <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        @{ Html.RenderAction("RenderForm", "SendEmail");}
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+

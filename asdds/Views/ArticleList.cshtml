@@ -1,0 +1,13 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<Umbraco.Web.PublishedModels.ArticleList>
+
+
+@{
+    Layout = "master.cshtml";
+}
+
+
+<!-- Page Header-->
+@Html.Partial("~/Views/Partials/pageHeader.cshtml")
+
+
+@Html.Partial("~/Views/Partials/latestArticle.cshtml")
